@@ -12,7 +12,7 @@
 </head>
 
 <body>
-	<header><h1>STAFF編集</h1></header>
+	<header><h1>STAFF情報</h1></header>
 	
 	<main>
 		<?php

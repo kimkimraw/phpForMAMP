@@ -12,7 +12,7 @@
 </head>
 
 <body>
-	<header><h1>STAFF編集</h1></header>
+	<header><h1>STAFF削除</h1></header>
 	
 	<main>
 		<?php
@@ -41,18 +41,11 @@
 			}		
 		?>
 
-		<p>スタッフコード:
-			<?php print $staff_code; ?>
+		<p>スタッフ名:
+			<?php print $staff_name; ?>
 		</p>
-		<form method="post" action="staff_edit_check.php">
+		<form method="post" action="staff_delete_done.php">
 			<input type="hidden" name="code" value="<?php print($staff_code); ?>">
-			<p>スタッフ名 : 
-				<input type="text" name="name" value="<?php print $staff_name; ?>">
-			</p>
-			<p>パスワード :
-				<input type="password" name="pass" placeholder="パスワード（1回目）">
-				<input type="password" name="pass2" placeholder="パスワード（2回目）">
-			</p>
 			<input type="button" onclick="history.back()" value="back">
 			<input type="submit" value="OK">
 		</form>

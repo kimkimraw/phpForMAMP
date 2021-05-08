@@ -12,50 +12,33 @@
 </head>
 
 <body>
-	<header><h1>STAFF編集</h1></header>
+	<header><h1>STAFF削除</h1></header>
 	
 	<main>
 		<?php
 			try{
-				$staff_code = $_GET['staffcode'];
-
+				$staff_code = $_POST['code'];
+				
 				$dsn = 'mysql:dbname=shop;host:localhost;charset=utf8';
 				$user = 'root';
 				$password = 'root';
 				$dbh = new PDO($dsn,$user,$password);
 				$dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-				$sql = 'SELECT NAME FROM mst_staff WHERE CODE=?';
+				$sql = 'DELETE FROM mst_staff WHERE CODE=?';
 				$stmt = $dbh->prepare($sql);
+
 				$data[] = $staff_code;
 				$stmt->execute($data);
-
-				$rec = $stmt->fetch(PDO::FETCH_ASSOC);
-				$staff_name = $rec['NAME'];
-
 				$dbh = null;
 
 			}catch(Exception $e){
 				print 'ただいま障害が発生しております。';
 				exit();
-			}		
+			}
 		?>
-
-		<p>スタッフコード:
-			<?php print $staff_code; ?>
-		</p>
-		<form method="post" action="staff_edit_check.php">
-			<input type="hidden" name="code" value="<?php print($staff_code); ?>">
-			<p>スタッフ名 : 
-				<input type="text" name="name" value="<?php print $staff_name; ?>">
-			</p>
-			<p>パスワード :
-				<input type="password" name="pass" placeholder="パスワード（1回目）">
-				<input type="password" name="pass2" placeholder="パスワード（2回目）">
-			</p>
-			<input type="button" onclick="history.back()" value="back">
-			<input type="submit" value="OK">
-		</form>
+		<p>削除が完了しました</p>
+		<p><a href="staff_list.php">back</a></p>
 	</main>
 
 	<footer></footer>

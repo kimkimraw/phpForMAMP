@@ -29,7 +29,7 @@
 
 				$dbh = null;
 
-				print '<form method="post" action="staff_edit.php">';
+				print '<form method="post" action="staff_branch.php">';
 				while(true){
 					$rec = $stmt->fetch(PDO::FETCH_ASSOC);
 					if($rec == false){
@@ -39,7 +39,10 @@
 					print $rec['NAME'];
 					print '<br>';
 				}
-				print '<input type="submit" value="edit">';
+				print '<input type="submit" value="disp" name="disp">';
+				print '<input type="submit" value="add" name="add">';
+				print '<input type="submit" value="edit" name="edit">';
+				print '<input type="submit" value="delete" name="delete">';
 				print '</form>';
 
 			}catch(Exception $e){
