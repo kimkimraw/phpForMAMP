@@ -44,18 +44,12 @@
 		<p>スタッフコード:
 			<?php print $staff_code; ?>
 		</p>
-		<form method="post" action="staff_edit_check.php">
-			<input type="hidden" name="code" value="<?php print($staff_code); ?>">
-			<p>スタッフ名 : 
-				<input type="text" name="name" value="<?php print $staff_name; ?>">
-			</p>
-			<p>パスワード :
-				<input type="password" name="pass" placeholder="パスワード（1回目）">
-				<input type="password" name="pass2" placeholder="パスワード（2回目）">
-			</p>
-			<input type="button" onclick="history.back()" value="back">
-			<input type="submit" value="OK">
-		</form>
+		<p>スタッフ名 : 
+			<?php print $staff_name; ?>
+		</p>
+
+		<input type="button" onclick="history.back()" value="back">
+
 	</main>
 
 	<footer></footer>
