@@ -12,18 +12,11 @@
 </head>
 
 <body>
-	<header><h1>商品追加</h1></header>
+	<header><h1>商品一覧</h1></header>
 	
 	<main>
-		<form method="post" action="product_add_check.php" enctype="multipart/form-data">
-			<input type="text" name="name" placeholder="商品名"><br>
-			<input type="text" name="price" placeholder="価格"><br>
-			<input type="file" name="img"><br>
-
-			<input type="button" onclick="history.back()" value="back">
-			<input type="submit" value="追加">
-		</form>
-
+		<p>商品が選択されていません。</p>
+		<a href="product_list.php">back</a>
 	</main>
 
 	<footer></footer>

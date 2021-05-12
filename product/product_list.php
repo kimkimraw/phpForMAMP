@@ -29,7 +29,7 @@
 
 				$dbh = null;
 
-				print '<form method="post" action="productß_branch.php">';
+				print '<form method="post" action="product_branch.php">';
 				while(true){
 					$rec = $stmt->fetch(PDO::FETCH_ASSOC);
 					if($rec == false){

@@ -12,14 +12,12 @@
 </head>
 
 <body>
-	<header><h1>STAFF追加</h1></header>
+	<header><h1>商品情報</h1></header>
 	
 	<main>
 		<?php
 			try{
-				$product_name = $_POST['name'];
-				$product_price = $_POST['price'];
-				$product_img = $_POST['img'];
+				$product_code = $_GET['procode'];
 
 				$dsn = 'mysql:dbname=shop;host:localhost;charset=utf8';
 				$user = 'root';
@@ -27,25 +25,44 @@
 				$dbh = new PDO($dsn,$user,$password);
 				$dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-				$sql = 'INSERT INTO mst_product(NAME,PRICE,IMG) VALUES(?,?,?)';
+				$sql = 'SELECT NAME,PRICE,IMG FROM mst_product WHERE CODE=?';
 				$stmt = $dbh->prepare($sql);
-
-				$data[] = $product_name;
-				$data[] = $product_price;
-				$data[] = $product_img;
+				$data[] = $product_code;
 				$stmt->execute($data);
+
+				$rec = $stmt->fetch(PDO::FETCH_ASSOC);
+				$product_name = $rec['NAME'];
+				$product_price = $rec['PRICE'];
+				$product_img_name = $rec['IMG'];
+
 				$dbh = null;
 
-				print $product_name;
-				print 'を追加しました';
+				if($product_img_name == ''){
+					$disp_img = '';
+				}else{
+					$disp_img = '<img src="./img/'.$product_img_name.'" style=width:50%;>';
+				}
 
 			}catch(Exception $e){
 				print 'ただいま障害が発生しております。';
 				exit();
-			}
+			}		
 		?>
 
-		<p><a href="product_list.php">back</a></p>
+		<p>商品コード:
+			<?php print $product_code; ?>
+		</p>
+		<p>商品名称 : 
+			<?php print $product_name; ?>
+		</p>
+		<p>商品価格 : 
+			<?php print $product_price; ?>円
+		</p>
+		<?php print $disp_img; ?>
+		<br>
+
+		<input type="button" onclick="history.back()" value="back">
+
 	</main>
 
 	<footer></footer>

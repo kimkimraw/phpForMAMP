@@ -12,39 +12,37 @@
 </head>
 
 <body>
-	<header><h1>STAFF追加</h1></header>
+	<header><h1>商品削除</h1></header>
 	
 	<main>
 		<?php
 			try{
-				$product_name = $_POST['name'];
-				$product_price = $_POST['price'];
+				$product_code = $_POST['code'];
 				$product_img = $_POST['img'];
-
+				
 				$dsn = 'mysql:dbname=shop;host:localhost;charset=utf8';
 				$user = 'root';
 				$password = 'root';
 				$dbh = new PDO($dsn,$user,$password);
 				$dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-				$sql = 'INSERT INTO mst_product(NAME,PRICE,IMG) VALUES(?,?,?)';
+				$sql = 'DELETE FROM mst_product WHERE CODE=?';
 				$stmt = $dbh->prepare($sql);
 
-				$data[] = $product_name;
-				$data[] = $product_price;
-				$data[] = $product_img;
+				$data[] = $product_code;
 				$stmt->execute($data);
 				$dbh = null;
 
-				print $product_name;
-				print 'を追加しました';
+				if($product_img != ''){
+					unlink('./img/'.$product_img);
+				}
 
 			}catch(Exception $e){
 				print 'ただいま障害が発生しております。';
 				exit();
 			}
 		?>
-
+		<p>削除が完了しました</p>
 		<p><a href="product_list.php">back</a></p>
 	</main>
 

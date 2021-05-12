@@ -12,29 +12,29 @@
 </head>
 
 <body>
-	<header><h1>商品追加</h1></header>
+	<header><h1>商品修正</h1></header>
 	
 	<main>
 		<?php
+			$product_code = $_POST['code'];
 			$product_name = $_POST['name'];
 			$product_price = $_POST['price'];
+			$product_img_old_name = $_POST['img_old_name'];
 			$product_img = $_FILES['img'];
-
+			
 
 			if($product_name == ''){
-				print '商品名を入力してください';
-				print '<br>';
+				print '商品名称を入力してください';
 			}else{
-				print '商品名 : ';
+				print '商品名称 : ';
 				print $product_name;
 				print '<br>';
 			}
-			// 価格が「半角数字以外」であればTRUE
-			if(preg_match('/^[\d]+$/',$product_price) == false){
-				print '価格は半角数字で入力してください。';
-				print '<br>';
+
+			if($product_price == ''){
+				print '商品価格を入力してください';
 			}else{
-				print '価格 : ';
+				print '商品名称 : ';
 				print $product_price;
 				print '<br>';
 			}
@@ -44,20 +44,24 @@
 					print '画像サイズが大きすぎます';
 				}else{
 					move_uploaded_file($product_img['tmp_name'],'./img/'.$product_img['name']);
+					print '<img src="./img/'.$product_img_old_name.'" style="width:50%;">';
 					print '<img src="./img/'.$product_img['name'].'" style="width:50%;">';
 					print '<br>';
 				}
 
 			}
 
-			if($product_name == '' || preg_match('/^[\d]+$/',$product_price) == false || $product_img['size'] > 1000000){
+
+			if($product_name == '' || $product_price == ''){
 				print '<form>';
 				print '<input type="button" onclick="history.back()" value="back">';
 				print '</form>';
 			}else{
-				print '<form method="post" action="product_add_done.php">';
+				print '<form method="post" action="product_edit_done.php">';
+				print '<input type="hidden" name="code" value="'.$product_code.'">';
 				print '<input type="hidden" name="name" value="'.$product_name.'">';
 				print '<input type="hidden" name="price" value="'.$product_price.'">';
+				print '<input type="hidden" name="img_old_name" value="'.$product_img_old_name.'">';
 				print '<input type="hidden" name="img" value="'.$product_img['name'].'">';
 				print '<input type="button" onclick="history.back()" value="back">';
 				print '<input type="submit" value="OK">';
