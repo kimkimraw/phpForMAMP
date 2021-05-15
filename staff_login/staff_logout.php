@@ -1,14 +1,13 @@
 <?php
 	session_start();
-	//「セッションハイジャック」対策
-	session_regenerate_id(true); //セッション情報を変更
-	if(isset($_SESSION['login']) == false ){
-		print '<p>ログインしておりません。</p>';
-		print '<a href="../staff_login/staff_login.html">ログイン画面へ</a>';
-		exit();
-	}else{
-		print '<p>'.$_SESSION['staff_name'].'さんログイン中</p>';
+	$_SESSION = array();
+
+	// もしCookieにセッション情報があれば削除
+	if(isset($_COOKIE[session_name()]) == true){
+		setcookie(session_name(),'',time()-42000,'/');
 	}
+
+	session_destroy(); //session情報破棄
 ?>
 <!-- セッション情報を確認。　※1行目に記載しないとエラーとなる -->
 <!DOCTYPE html>
@@ -25,11 +24,11 @@
 </head>
 
 <body>
-	<header><h1>商品一覧</h1></header>
-	
 	<main>
-		<p>商品が選択されていません。</p>
-		<a href="product_list.php">back</a>
+		<p>ログアウトしました</p>
+		<p><a href="../staff_login/staff_login.html">ログイン画面へ</a></p>
+		
+
 	</main>
 
 	<footer></footer>

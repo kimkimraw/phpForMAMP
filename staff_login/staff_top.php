@@ -25,33 +25,16 @@
 </head>
 
 <body>
-	<header><h1>STAFF削除</h1></header>
+	<header><h1>管理TOP</h1></header>
 	
 	<main>
-		<?php
-			try{
-				$staff_code = $_POST['code'];
-				
-				$dsn = 'mysql:dbname=shop;host:localhost;charset=utf8';
-				$user = 'root';
-				$password = 'root';
-				$dbh = new PDO($dsn,$user,$password);
-				$dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-				$sql = 'DELETE FROM mst_staff WHERE CODE=?';
-				$stmt = $dbh->prepare($sql);
+		<p><a href="../staff/staff_list.php">スタッフ管理</a></p>
+		<p><a href="../product/product_list.php">商品管理</a></p>
 
-				$data[] = $staff_code;
-				$stmt->execute($data);
-				$dbh = null;
+		<p><a href="staff_logout.php">ログアウト</a></p>
+		
 
-			}catch(Exception $e){
-				print 'ただいま障害が発生しております。';
-				exit();
-			}
-		?>
-		<p>削除が完了しました</p>
-		<p><a href="staff_list.php">back</a></p>
 	</main>
 
 	<footer></footer>
