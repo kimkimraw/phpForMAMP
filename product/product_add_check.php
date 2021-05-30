@@ -29,8 +29,11 @@
 	
 	<main>
 		<?php
-			$product_name = $_POST['name'];
-			$product_price = $_POST['price'];
+			require_once('../common/common.php');
+
+			$post = sanitize($_POST);
+			$product_name = $post['name'];
+			$product_price = $post['price'];
 			$product_img = $_FILES['img'];
 
 

@@ -29,9 +29,12 @@
 	
 	<main>
 		<?php
-			$staff_name = $_POST['name'];
-			$staff_pass = $_POST['pass'];
-			$staff_pass2 = $_POST['pass2'];
+			require_once('../common/common.php');
+
+			$post = sanitize($_POST);
+			$staff_name = $post['name'];
+			$staff_pass = $post['pass'];
+			$staff_pass2 = $post['pass2'];
 
 			if($staff_name == ''){
 				print 'スタッフ名を入力してください';

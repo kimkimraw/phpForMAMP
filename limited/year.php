@@ -18,10 +18,19 @@
 		<?php
 			require_once('../common/common.php');
 
+			// パンクずリスト生成
+			// 現在のページのパス
+			$path = $_SERVER["PHP_SELF"];
+			$breadcrumns = breadCrumns($path,$_menu);
+			foreach($breadcrumns as $key => $val){
+				// 三項演算子で出力している　＝＞　（条件）？ TURE：FALSE；
+				print ($path==$key)?$val:"<a href=\"{$key}\">{$val}</a> &gt; ";
+			}
+
 			$year = $_POST['year'];
 			$wareki = gengo($year);
-			print $wareki;		
-		?>
+			print '<br>'.$wareki;
+	?>
 	</main>
 
 	<footer></footer>

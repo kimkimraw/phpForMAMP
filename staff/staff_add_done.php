@@ -30,8 +30,11 @@
 	<main>
 		<?php
 			try{
-				$staff_name = $_POST['name'];
-				$staff_pass = $_POST['pass'];
+				require_once('../common/common.php');
+
+				$post = sanitize($_POST);
+				$staff_name = $post['name'];
+				$staff_pass = $post['pass'];
 
 				$dsn = 'mysql:dbname=shop;host:localhost;charset=utf8';
 				$user = 'root';

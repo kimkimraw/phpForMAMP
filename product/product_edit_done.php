@@ -30,11 +30,14 @@
 	<main>
 		<?php
 			try{
-				$product_code = $_POST['code'];
-				$product_name = $_POST['name'];
-				$product_price = $_POST['price'];
-				$product_img_old_name = $_POST['img_old_name'];
-				$product_img = $_POST['img'];
+				require_once('../common/common.php');
+
+				$post = sanitize($_POST);
+				$product_code = $post['code'];
+				$product_name = $post['name'];
+				$product_price = $post['price'];
+				$product_img_old_name = $post['img_old_name'];
+				$product_img = $post['img'];
 
 				$dsn = 'mysql:dbname=shop;host:localhost;charset=utf8';
 				$user = 'root';
