@@ -24,7 +24,7 @@
 	// 安全対策
 	function sanitize($before_val){
 		foreach($before_val as $key=>$val){
-			$after_val($key) = htmlspecialchars($val,ENT_QUOTES,'UTF-8');
+			$after_val[$key] = htmlspecialchars($val,ENT_QUOTES,'UTF-8');
 		}
 		return $after_val;
 	}
